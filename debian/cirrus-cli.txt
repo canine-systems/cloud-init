@@ -1,16 +1,10 @@
 #!/bin/sh
 apt-get update &&
-  apt-get -y install apt-transport-https ca-certificates &&
+  apt-get -y install apt-transport-https ca-certificates wget &&
   echo "deb [trusted=yes] https://apt.fury.io/cirruslabs/ /" | tee /etc/apt/sources.list.d/cirruslabs.list &&
   apt-get update &&
   apt-get -y install cirrus-cli &&
-  echo "[Unit]
-Description="Run a persistent Cirrus CLI worker configured by /etc/cirrus.yml"
-
-[Service]
-ExecStart=/usr/bin/cirrus cli worker run --config /etc/cirrus.yml
-
-[Install]
-WantedBy=multi-user.target" > /etc/systemd/system/cirrus-worker.service &&
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus.yml -O /etc/cirrus.yml
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus-worker.service -O /etc/systemd/system/cirrus-worker.service &&
   systemctl daemon-reload &&
   systemctl enable cirrus-worker
