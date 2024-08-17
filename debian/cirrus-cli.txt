@@ -3,4 +3,14 @@ apt-get update &&
   apt-get -y install apt-transport-https ca-certificates &&
   echo "deb [trusted=yes] https://apt.fury.io/cirruslabs/ /" | tee /etc/apt/sources.list.d/cirruslabs.list &&
   apt-get update &&
-  apt-get -y install cirrus-cli
+  apt-get -y install cirrus-cli &&
+  echo "[Unit]
+Description="Run a persistent Cirrus CLI worker configured by /etc/cirrus.yml"
+
+[Service]
+ExecStart=/usr/bin/cirrus cli worker run --config /etc/cirrus.yml
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/cirrus-worker.service &&
+  systemctl daemon-reload &&
+  systemctl enable cirrus-worker
