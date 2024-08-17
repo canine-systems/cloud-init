@@ -1,0 +1,13 @@
+#!/bin/sh
+apt-get update &&
+  apt-get -y install apt-transport-https ca-certificates wget &&
+  echo "deb [trusted=yes] https://apt.fury.io/cirruslabs/ /" | tee /etc/apt/sources.list.d/cirruslabs.list &&
+  apt-get update &&
+  apt-get -y install cirrus-cli &&
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/cirrus-worker/cirrus.yml -O /etc/cirrus.yml &&
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/cirrus-worker/cirrus-worker.service -O /etc/systemd/system/cirrus-worker.service &&
+  mkdir -p /opt/bin &&
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/cirrus-worker/cirrus-worker-setup.sh -O /opt/bin/cirrus-worker-setup.sh &&
+  chmod +x /opt/bin/cirrus-worker-setup.sh &&
+  systemctl daemon-reload &&
+  systemctl enable cirrus-worker

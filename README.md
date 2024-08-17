@@ -3,18 +3,11 @@ Cloud-init files that can be included via [`#include`](https://cloudinit.readthe
 
 # Cirrus CLI usage
 
-To set up a Cirrus CLI worker using cloud-init and this repository, you need to use both `vendor-data` and `user-data`.
-
-vendor-data:
+To set up a Cirrus CLI worker using cloud-init and this repository, set up your user-data like this:
 
 ```
-#include
-https://raw.githubusercontent.com/canine-systems/cloud-init/main/debian/cirrus-cli.txt
-```
+#/bin/sh
 
-user-data:
-
-```
-#!/bin/sh
-sh /opt/bin/cirrus-worker-setup.sh "CIRRUS POOL REGISTRATION TOKEN"
+wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/cirrus-worker/include.txt -O- | sh &&
+/opt/bin/cirrus-worker-setup.sh "CIRRUS POOL REGISTRATION TOKEN"
 ```
