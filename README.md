@@ -1,7 +1,7 @@
 # cloud-init
 Cloud-init files that can be included via [`#include`](https://cloudinit.readthedocs.io/en/latest/explanation/format.html).
 
-# Cirrus CLI usage
+## Cirrus CLI usage
 
 To set up a Cirrus CLI worker using cloud-init and this repository, set up your user-data like this:
 
