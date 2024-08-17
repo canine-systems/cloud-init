@@ -1,0 +1,6 @@
+#!/bin/sh
+apt-get update &&
+  apt-get -y install apt-transport-https ca-certificates &&
+  echo "deb [trusted=yes] https://apt.fury.io/cirruslabs/ /" | tee /etc/apt/sources.list.d/cirruslabs.list &&
+  apt-get update &&
+  apt-get -y install cirrus-cli
