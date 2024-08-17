@@ -1,7 +1,7 @@
 # cloud-init
 Various cloud-init configurations.
 
-## Cirrus CLI usage
+## Cirrus CLI worker
 
 To set up a Cirrus CLI worker using cloud-init and this repository, set up your user-data like this:
 
