@@ -4,7 +4,9 @@ apt-get update &&
   echo "deb [trusted=yes] https://apt.fury.io/cirruslabs/ /" | tee /etc/apt/sources.list.d/cirruslabs.list &&
   apt-get update &&
   apt-get -y install cirrus-cli &&
-  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus.yml -O /etc/cirrus.yml
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus.yml -O /etc/cirrus.yml &&
   wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus-worker.service -O /etc/systemd/system/cirrus-worker.service &&
+  mkdir -p /opt/bin &&
+  wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus-worker-setup.sh -O /opt/bin/cirrus-worker-setup.sh &&
   systemctl daemon-reload &&
   systemctl enable cirrus-worker
