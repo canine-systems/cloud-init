@@ -2,7 +2,7 @@
 Description="Run a persistent Cirrus CLI worker configured by /etc/cirrus.yml"
 
 [Service]
-ExecStart=/usr/bin/cirrus cli worker run --config /etc/cirrus.yml --token ${CIRRUS_TOKEN}
+ExecStart=/usr/bin/cirrus worker run --file /etc/cirrus.yml --token ${CIRRUS_TOKEN}
 EnvironmentFile=/etc/environment
 
 [Install]
