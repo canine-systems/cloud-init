@@ -8,5 +8,6 @@ apt-get update &&
   wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus-worker.service -O /etc/systemd/system/cirrus-worker.service &&
   mkdir -p /opt/bin &&
   wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/data/cirrus-worker-setup.sh -O /opt/bin/cirrus-worker-setup.sh &&
+  chmod +x /opt/bin/cirrus-worker-setup.sh &&
   systemctl daemon-reload &&
   systemctl enable cirrus-worker
