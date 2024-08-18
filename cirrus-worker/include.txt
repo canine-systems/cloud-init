@@ -9,5 +9,6 @@ apt-get update &&
   mkdir -p /opt/bin &&
   wget https://raw.githubusercontent.com/canine-systems/cloud-init/main/cirrus-worker/cirrus-worker-setup.sh -O /opt/bin/cirrus-worker-setup.sh &&
   chmod +x /opt/bin/cirrus-worker-setup.sh &&
+  echo 'unqualified-search-registries = ["docker.io"]' >> /etc/containers/registries.conf &&
   systemctl daemon-reload &&
   systemctl enable cirrus-worker
